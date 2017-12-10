@@ -22,6 +22,7 @@ namespace FileSystemWatcher
         {
             InitializeComponent();
             fileSystemWatcher.Created += fileSystemWatcher_Created;
+            fileSystemWatcher.Filter = "*.csv"; 
         }
 
         protected override void OnStart(string[] args)
@@ -53,10 +54,11 @@ namespace FileSystemWatcher
         {
             try
             {
-                Thread.Sleep(70000);
+                Thread.Sleep(10000);
                 if (CheckFileExistance(WatchPath, e.Name))
                 {
                     CreateTextFile(WatchPath, e.Name);
+                    ReadInfo(WatchPath, e.Name);
                 }
             }
             catch (Exception ex)
@@ -92,6 +94,24 @@ namespace FileSystemWatcher
             using (SW = File.AppendText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "txtStatus_" + DateTime.Now.ToString("yyyyMMdd") + ".txt")))
             {
                 SW.WriteLine("File Created with Name: " + FileName + " at this location: " + FullPath);
+                SW.Close();
+            }
+        }
+
+        private void ReadInfo(string FullPath, string FileName)
+        {
+            Parser pars = new Parser();
+            string Destination = "C:\\newProjects\\Project4\\FileSystemWatcher\\txtfile.txt";
+            StreamWriter SW;          
+            if (!File.Exists(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "txt_" + ".txt")))
+            {
+                SW = File.CreateText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "txt_" + ".txt"));
+                SW.Close();
+            }
+            using (SW = new StreamWriter(Destination, true, Encoding.GetEncoding("windows-1251")))
+            {
+                var records = pars.ParseData(FullPath+"\\"+FileName);
+                SW.WriteLine("File: " + string.Join(",", records.Select(x => x.ToString())));
                 SW.Close();
             }
         }
