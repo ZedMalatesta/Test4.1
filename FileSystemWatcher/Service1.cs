@@ -11,6 +11,8 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using DAL.Classes;
 
 namespace FileSystemWatcher
 {
@@ -54,11 +56,12 @@ namespace FileSystemWatcher
         {
             try
             {
+                Adding addee = new Adding();
                 Thread.Sleep(10000);
                 if (CheckFileExistance(WatchPath, e.Name))
                 {
                     CreateTextFile(WatchPath, e.Name);
-                    ReadInfo(WatchPath, e.Name);
+                    ReadInfo(WatchPath, e.Name, addee);
                 }
             }
             catch (Exception ex)
@@ -98,7 +101,7 @@ namespace FileSystemWatcher
             }
         }
 
-        private void ReadInfo(string FullPath, string FileName)
+        private void ReadInfo(string FullPath, string FileName, DAL.Classes.Adding added)
         {
             Parser pars = new Parser();
             string Destination = "C:\\newProjects\\Project4\\FileSystemWatcher\\txtfile.txt";
@@ -111,10 +114,32 @@ namespace FileSystemWatcher
             using (SW = new StreamWriter(Destination, true, Encoding.GetEncoding("windows-1251")))
             {
                 var records = pars.ParseData(FullPath+"\\"+FileName);
-                SW.WriteLine("File: " + string.Join(",", records.Select(x => x.ToString())));
+                SW.WriteLine("File: " + records.Select(x => x.ManagerName).FirstOrDefault());
+                Adding addeds = new Adding();
+                addeds.AddNewManager(17, records.Select(x => x.ManagerName).FirstOrDefault());
+                //Task task = Task.Run(() => AddNewManager2(13, records.Select(x => x.ManagerName).FirstOrDefault()));
+                SW.WriteLine("File: " + records.Select(x => x.ManagerName).FirstOrDefault());
                 SW.Close();
             }
         }
+
+        /*public void AddNewManager2(int managerID, string managerName)
+        {
+            ManagerSaleInfoContext context = new ManagerSaleInfoContext();
+
+            // Создать нового покупателя
+            DAL.Models.Manager customer = new DAL.Models.Manager
+            {
+                ManagerName = managerName,
+                ManagerID = managerID
+            };
+
+            // Добавить в DbSet
+            context.Managers.Add(customer);
+
+            // Сохранить изменения в базе данных
+            context.SaveChanges();
+        }*/
 
         public static void Create_ServiceStoptextfile()
         {

@@ -7,9 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsClient", "WindowsFormsClient\WindowsFormsClient.csproj", "{1EEC6913-9B92-4991-98FE-CBC94C54DA87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryClasses", "RrepositoryClasses\RepositoryClasses.csproj", "{435870A0-B57C-4BE7-B161-A2F39CBADE6E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{C61C18BB-AA4D-46B6-AA52-CD3A4EFEBDB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "RrepositoryClasses\DAL.csproj", "{435870A0-B57C-4BE7-B161-A2F39CBADE6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemWatcher", "FileSystemWatcher\FileSystemWatcher.csproj", "{A51F242F-EFEB-4BE4-8D78-F5E5D6C8B596}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{435870A0-B57C-4BE7-B161-A2F39CBADE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{435870A0-B57C-4BE7-B161-A2F39CBADE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{435870A0-B57C-4BE7-B161-A2F39CBADE6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C61C18BB-AA4D-46B6-AA52-CD3A4EFEBDB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C61C18BB-AA4D-46B6-AA52-CD3A4EFEBDB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C61C18BB-AA4D-46B6-AA52-CD3A4EFEBDB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C61C18BB-AA4D-46B6-AA52-CD3A4EFEBDB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A51F242F-EFEB-4BE4-8D78-F5E5D6C8B596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A51F242F-EFEB-4BE4-8D78-F5E5D6C8B596}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A51F242F-EFEB-4BE4-8D78-F5E5D6C8B596}.Release|Any CPU.ActiveCfg = Release|Any CPU

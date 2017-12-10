@@ -8,12 +8,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
-    [Table("Manager")]
-    public class Manager
+    [Table("SaleInfo")]
+    public class SaleInfo
     {
         [Key]
-        public string ManagerName { get; set; }
-
         public int ManagerID { get; set; }
+
+        public string ClientName { get; set; }
+
+        public string Product { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public int Cost { get; set; }
     }
 }

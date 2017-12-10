@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 
-namespace RrepositoryClasses.Classes
+namespace DAL.Classes
 {
     /*
     class GenericRepository<T> : IRepository<T> where T : class
@@ -14,7 +15,7 @@ namespace RrepositoryClasses.Classes
         private SampleDbEntities entities = null;
         IObjectSet<T> _objectSet;
 
-
+        protected DBConnect managersContext;
 
         public GenericRepository(SampleDbEntities _entities)
         {
@@ -50,9 +51,7 @@ namespace RrepositoryClasses.Classes
         public void Delete(T entity)
         {
             _objectSet.DeleteObject(entity);
-        }
-
-      
+        }      
     }
     */
 }

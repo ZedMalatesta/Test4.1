@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SalesDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SalesDBModelStoreContainer">
+    <EntitySet Name="ManagerSet" EntityType="SalesDBModel.Store.ManagerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SaleInfoSet" EntityType="SalesDBModel.Store.SaleInfoSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ManagerSaleInfo" Association="SalesDBModel.Store.ManagerSaleInfo">
+      <End Role="Manager" EntitySet="ManagerSet" />
+      <End Role="SaleInfo" EntitySet="SaleInfoSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ManagerSet">
+    <Key>
+      <PropertyRef Name="ManagerID" />
+    </Key>
+    <Property Name="ManagerID" Type="int" Nullable="false" />
+    <Property Name="ManagerName" Type="nvarchar" Nullable="false" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="SaleInfoSet">
+    <Key>
+      <PropertyRef Name="ManagerID" />
+    </Key>
+    <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Product" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Cost" Type="int" Nullable="false" />
+    <Property Name="Manager_ManagerID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ManagerSaleInfo">
+    <End Role="Manager" Type="SalesDBModel.Store.ManagerSet" Multiplicity="1" />
+    <End Role="SaleInfo" Type="SalesDBModel.Store.SaleInfoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="ManagerID" />
+      </Principal>
+      <Dependent Role="SaleInfo">
+        <PropertyRef Name="Manager_ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SalesDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="SalesDBModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ManagerSet" EntityType="SalesDBModel.Manager" />
+          <EntitySet Name="SaleInfoSet" EntityType="SalesDBModel.SaleInfo" />
+          <AssociationSet Name="ManagerSaleInfo" Association="SalesDBModel.ManagerSaleInfo">
+            <End Role="Manager" EntitySet="ManagerSet" />
+            <End Role="SaleInfo" EntitySet="SaleInfoSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="ManagerName" Type="String" Nullable="false" MaxLength="40" />
+          <NavigationProperty Name="SaleInfo" Relationship="SalesDBModel.ManagerSaleInfo" FromRole="Manager" ToRole="SaleInfo" />
+        </EntityType>
+        <EntityType Name="SaleInfo">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" Nullable="false" />
+          <Property Name="Product" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Manager" Relationship="SalesDBModel.ManagerSaleInfo" FromRole="SaleInfo" ToRole="Manager" />
+        </EntityType>
+        <Association Name="ManagerSaleInfo">
+          <End Type="SalesDBModel.Manager" Role="Manager" Multiplicity="1" />
+          <End Type="SalesDBModel.SaleInfo" Role="SaleInfo" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SalesDBModelStoreContainer" CdmEntityContainer="SalesDBModelContainer">
+    <EntitySetMapping Name="ManagerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SalesDBModel.Manager)">
+        <MappingFragment StoreEntitySet="ManagerSet">
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleInfoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SalesDBModel.SaleInfo)">
+        <MappingFragment StoreEntitySet="SaleInfoSet">
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ManagerSaleInfo" TypeName="SalesDBModel.ManagerSaleInfo" StoreEntitySet="SaleInfoSet">
+      <EndProperty Name="Manager">
+        <ScalarProperty Name="ManagerID" ColumnName="Manager_ManagerID" />
+      </EndProperty>
+      <EndProperty Name="SaleInfo">
+        <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
