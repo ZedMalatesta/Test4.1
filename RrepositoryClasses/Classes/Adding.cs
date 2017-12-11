@@ -11,10 +11,12 @@ namespace DAL.Classes
 {
     public class Adding
     {
+        /*
         public void AddNewManager(int managerID, string managerName)
         {
-            SEDBdbEntities context = new SEDBdbEntities();
-            DAL.Manager customer = new DAL.Manager
+
+            RrepositoryClasses.SaleDBEntities context = new SaleDBEntities();
+            RrepositoryClasses.Manager customer = new RrepositoryClasses.Manager
             {
                 ManagerName = managerName,
                 ManagerID = managerID
@@ -25,7 +27,8 @@ namespace DAL.Classes
 
             // Сохранить изменения в базе данных
             context.SaveChanges(); 
-        }
+            
+        }*/
         /*ManagerSaleInfoContext context = new ManagerSaleInfoContext();
 
         // Создать нового покупателя

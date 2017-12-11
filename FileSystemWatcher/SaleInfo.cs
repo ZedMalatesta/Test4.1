@@ -7,14 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RrepositoryClasses
+namespace FileSystemWatcher
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Manager
+    public partial class SaleInfo
     {
-        public string ManagerName { get; set; }
         public int ManagerID { get; set; }
+        public string ClientName { get; set; }
+        public string Product { get; set; }
+        public System.DateTime Date { get; set; }
+        public int Cost { get; set; }
     }
 }

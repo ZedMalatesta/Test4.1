@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
+    /*
     [Table("SaleInfo")]
     public class SaleInfo
     {
@@ -22,4 +23,5 @@ namespace DAL.Models
 
         public int Cost { get; set; }
     }
+    */
 }

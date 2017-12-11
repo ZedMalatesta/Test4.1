@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
+    /*
     [Table("Manager")]
     public class Manager
     {
@@ -15,5 +16,5 @@ namespace DAL.Models
         public string ManagerName { get; set; }
 
         public int ManagerID { get; set; }
-    }
+    }*/
 }

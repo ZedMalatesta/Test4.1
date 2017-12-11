@@ -12,9 +12,15 @@ namespace RrepositoryClasses
     using System;
     using System.Collections.Generic;
     
-    public partial class Manager
+    public partial class SaleInfoSet
     {
-        public string ManagerName { get; set; }
         public int ManagerID { get; set; }
+        public string ClientName { get; set; }
+        public string Product { get; set; }
+        public System.DateTime Date { get; set; }
+        public int Cost { get; set; }
+        public int Manager_ManagerID { get; set; }
+    
+        public virtual ManagerSet ManagerSet { get; set; }
     }
 }

@@ -62,6 +62,8 @@
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,6 +74,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>ModelForService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manager.cs">
+      <DependentUpon>ModelForService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerSet.cs">
+      <DependentUpon>ModelForService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelForService.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelForService.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelForService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelForService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelForService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelForService.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Parser.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -86,6 +112,12 @@
     </Compile>
     <Compile Include="Record.cs" />
     <Compile Include="RepositoryConnector.cs" />
+    <Compile Include="SaleInfo.cs">
+      <DependentUpon>ModelForService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleInfoSet.cs">
+      <DependentUpon>ModelForService.tt</DependentUpon>
+    </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -97,6 +129,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="ModelForService.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelForService.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelForService.edmx.diagram">
+      <DependentUpon>ModelForService.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +167,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelForService.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelForService.edmx</DependentUpon>
+      <LastGenOutput>ModelForService.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelForService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelForService.edmx</DependentUpon>
+      <LastGenOutput>ModelForService.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

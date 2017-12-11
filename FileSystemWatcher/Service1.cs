@@ -115,31 +115,30 @@ namespace FileSystemWatcher
             {
                 var records = pars.ParseData(FullPath+"\\"+FileName);
                 SW.WriteLine("File: " + records.Select(x => x.ManagerName).FirstOrDefault());
-                Adding addeds = new Adding();
-                addeds.AddNewManager(17, records.Select(x => x.ManagerName).FirstOrDefault());
+                AddNewManager2(17, records.Select(x => x.ManagerName).FirstOrDefault());
                 //Task task = Task.Run(() => AddNewManager2(13, records.Select(x => x.ManagerName).FirstOrDefault()));
                 SW.WriteLine("File: " + records.Select(x => x.ManagerName).FirstOrDefault());
                 SW.Close();
             }
         }
 
-        /*public void AddNewManager2(int managerID, string managerName)
+        public void AddNewManager2(int managerID, string managerName)
         {
-            ManagerSaleInfoContext context = new ManagerSaleInfoContext();
+            SaleDBEntities context = new SaleDBEntities();
 
             // Создать нового покупателя
-            DAL.Models.Manager customer = new DAL.Models.Manager
+            FileSystemWatcher.Manager customer = new FileSystemWatcher.Manager
             {
                 ManagerName = managerName,
                 ManagerID = managerID
             };
 
             // Добавить в DbSet
-            context.Managers.Add(customer);
+            context.Manager.Add(customer);
 
             // Сохранить изменения в базе данных
             context.SaveChanges();
-        }*/
+        }
 
         public static void Create_ServiceStoptextfile()
         {

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Classes
 {
+    /*
     public class ManagerSaleInfoContext : DbContext
     {
         public ManagerSaleInfoContext() : base("SaleDB")
@@ -19,4 +20,5 @@ namespace DAL.Classes
         public DbSet<Manager> Managers { get; set; }
         public DbSet<SaleInfo> SaleInfos { get; set; }
     }
+    */
 }

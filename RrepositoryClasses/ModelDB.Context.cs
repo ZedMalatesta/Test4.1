@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL
+namespace RrepositoryClasses
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEDBdbEntities : DbContext
+    public partial class SaleDBEntities : DbContext
     {
-        public SEDBdbEntities()
-            : base("name=SEDBdbEntities")
+        public SaleDBEntities()
+            : base("name=SaleDBEntities")
         {
         }
     
@@ -25,7 +25,10 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<ManagerSet> ManagerSet { get; set; }
         public virtual DbSet<SaleInfo> SaleInfo { get; set; }
+        public virtual DbSet<SaleInfoSet> SaleInfoSet { get; set; }
     }
 }

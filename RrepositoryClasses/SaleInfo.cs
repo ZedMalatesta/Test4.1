@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL
+namespace RrepositoryClasses
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,5 @@ namespace DAL
         public string Product { get; set; }
         public System.DateTime Date { get; set; }
         public int Cost { get; set; }
-    
-        public virtual Manager Manager { get; set; }
     }
 }

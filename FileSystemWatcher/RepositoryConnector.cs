@@ -7,7 +7,7 @@ using DAL.Models;
 
 namespace FileSystemWatcher
 {
-    class RepositoryConnector
+    class DataBaseHandler
     {
         
     }

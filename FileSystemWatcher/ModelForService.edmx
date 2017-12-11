@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SaleDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerName" />
+          </Key>
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerSet">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleInfo">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="Product" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleInfoSet">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Product" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+          <Property Name="Manager_ManagerID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ManagerSaleInfo">
+          <End Role="ManagerSet" Type="Self.ManagerSet" Multiplicity="1" />
+          <End Role="SaleInfoSet" Type="Self.SaleInfoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagerSet">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="SaleInfoSet">
+              <PropertyRef Name="Manager_ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SaleDBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerSet" EntityType="Self.ManagerSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleInfoSet" EntityType="Self.SaleInfoSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ManagerSaleInfo" Association="Self.FK_ManagerSaleInfo">
+            <End Role="ManagerSet" EntitySet="ManagerSet" />
+            <End Role="SaleInfoSet" EntitySet="SaleInfoSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SaleDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerName" />
+          </Key>
+          <Property Name="ManagerName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerSet">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="ManagerName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SaleInfoSet" Relationship="Self.FK_ManagerSaleInfo" FromRole="ManagerSet" ToRole="SaleInfoSet" />
+        </EntityType>
+        <EntityType Name="SaleInfo">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleInfoSet">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <Property Name="Manager_ManagerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagerSet" Relationship="Self.FK_ManagerSaleInfo" FromRole="SaleInfoSet" ToRole="ManagerSet" />
+        </EntityType>
+        <Association Name="FK_ManagerSaleInfo">
+          <End Role="ManagerSet" Type="Self.ManagerSet" Multiplicity="1" />
+          <End Role="SaleInfoSet" Type="Self.SaleInfoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagerSet">
+              <PropertyRef Name="ManagerID" />
+            </Principal>
+            <Dependent Role="SaleInfoSet">
+              <PropertyRef Name="Manager_ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SaleDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="ManagerSet" EntityType="Self.ManagerSet" />
+          <EntitySet Name="SaleInfo" EntityType="Self.SaleInfo" />
+          <EntitySet Name="SaleInfoSet" EntityType="Self.SaleInfoSet" />
+          <AssociationSet Name="FK_ManagerSaleInfo" Association="Self.FK_ManagerSaleInfo">
+            <End Role="ManagerSet" EntitySet="ManagerSet" />
+            <End Role="SaleInfoSet" EntitySet="SaleInfoSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SaleDBModelStoreContainer" CdmEntityContainer="SaleDBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SaleDBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manager">
+            <EntityTypeMapping TypeName="SaleDBModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagerSet">
+            <EntityTypeMapping TypeName="SaleDBModel.ManagerSet">
+              <MappingFragment StoreEntitySet="ManagerSet">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleInfo">
+            <EntityTypeMapping TypeName="SaleDBModel.SaleInfo">
+              <MappingFragment StoreEntitySet="SaleInfo">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleInfoSet">
+            <EntityTypeMapping TypeName="SaleDBModel.SaleInfoSet">
+              <MappingFragment StoreEntitySet="SaleInfoSet">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Manager_ManagerID" ColumnName="Manager_ManagerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

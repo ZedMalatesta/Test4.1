@@ -12,9 +12,18 @@ namespace RrepositoryClasses
     using System;
     using System.Collections.Generic;
     
-    public partial class Manager
+    public partial class ManagerSet
     {
-        public string ManagerName { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ManagerSet()
+        {
+            this.SaleInfoSet = new HashSet<SaleInfoSet>();
+        }
+    
         public int ManagerID { get; set; }
+        public string ManagerName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SaleInfoSet> SaleInfoSet { get; set; }
     }
 }

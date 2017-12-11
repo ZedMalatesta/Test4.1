@@ -7,17 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL
+namespace FileSystemWatcher
 {
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class SalesDBModelContainer : DbContext
+    
+    public partial class SaleDBEntities : DbContext
     {
-        public SalesDBModelContainer()
-            : base("name=SalesDBModelContainer")
+        public SaleDBEntities()
+            : base("name=SaleDBEntities")
         {
         }
     
@@ -26,7 +25,10 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<RrepositoryClasses.Manager> ManagerSet { get; set; }
-        public virtual DbSet<RrepositoryClasses.SaleInfo> SaleInfoSet { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<ManagerSet> ManagerSet { get; set; }
+        public virtual DbSet<SaleInfo> SaleInfo { get; set; }
+        public virtual DbSet<SaleInfoSet> SaleInfoSet { get; set; }
     }
 }
